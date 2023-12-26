@@ -64,9 +64,21 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 # Resumen del modelo
 model.summary()
+
+
+
  
 # Entrenar el modelo
 history = model.fit(X_train, y_train, epochs=200, batch_size=90, validation_split=0.2)
+
+model.save('modelo_entrenado.h5')
+
+# Guardar los conjuntos de datos de entrenamiento y prueba
+np.save('X_train.npy', X_train)
+np.save('X_test.npy', X_test)
+np.save('y_train.npy', y_train)
+np.save('y_test.npy', y_test)
+
 
 # Evaluar el modelo con los datos de prueba
 score = model.evaluate(X_test, y_test, verbose=0)
